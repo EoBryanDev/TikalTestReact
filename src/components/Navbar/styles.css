@@ -1,3 +1,37 @@
-nav {
-    background-color: red;
+.navContainer {
+    background-color: rgba(54, 54, 54, 0.8);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    
+}
+.navContainer ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;   
+}
+
+.navContainer img{
+    width: 30px;
+    
+    margin: 5px;
+}
+.liContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.liContainer li{
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+    transition: ease 0.8s ;
+}
+a:hover{
+    color: #17a2b8;
 }
