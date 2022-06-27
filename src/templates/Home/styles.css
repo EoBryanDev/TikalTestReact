@@ -1,0 +1,14 @@
+.backgroundHome{
+    background-image: url(../../../public/img/tikal_tech_homeBackground.webp);
+    height: 100vh;
+}
+
+.container {
+    width: 70%;
+    min-height: 70%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
