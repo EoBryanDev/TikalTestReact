@@ -1,5 +1,6 @@
 import "./styles.css";
-import { Button } from "../../components/Button";
+import { FormLogin } from "../../components/FormLogin";
+
 function Login() {
   return (
     <section className="containerLogin">
@@ -10,17 +11,7 @@ function Login() {
           To connect to your account fill the form with valid email and
           password!
         </p>
-        <form className="loginForm">
-          <div className="inputContainer">
-            <input type="email" id="user" placeholder="Type your email"></input>
-            <input
-              type="password"
-              id="pwd"
-              placeholder="Type your password"
-            ></input>
-            <Button>Sign In</Button>
-          </div>
-        </form>
+        <FormLogin />
       </aside>
       <aside>
         <img

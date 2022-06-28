@@ -1,7 +1,7 @@
 .btn{
     padding: 5px;
     background-color: rgb(23,162,184);
-    border: 4px solid rgba(52, 228, 255, 0.5) ;
+    border: none;
     color: white;
     border-radius: 5px;
     flex-wrap: nowrap;
