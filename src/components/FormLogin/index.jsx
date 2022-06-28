@@ -1,24 +1,35 @@
 import { useState } from "react";
 
+
+
 import "./styles.css";
+import { loginRoute } from "../../utils/post-login-route";
 import { Button } from "../Button";
 import { Input } from "../FormLogin/Input";
 
 export const FormLogin = () => {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
+  {/*tentar implementar mensagem de errro*/}
+  const [error, setError] = useState("")
 
-  function handleSubmit(e) {
+  
+
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const data = {
       user: user,
       pwd: pwd,
-    };
-    console.log(data);
+    };   
+    loginRoute(data)
+
+    
+
   }
 
   return (
-    <form className="loginForm" onSubmit={handleSubmit}>
+      <form className="loginForm" onSubmit={handleSubmit}>
       <div className="inputContainer">
         <Input
           type="email"
