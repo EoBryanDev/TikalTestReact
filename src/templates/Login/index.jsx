@@ -4,6 +4,7 @@ function Login() {
   return (
     <section className="containerLogin">
       <aside className="form-aside">
+        <img src="img/tikal_tech_logotype.webp" alt="Tikal Logotype"></img>
         <h2>Welcome back</h2>
         <p>
           To connect to your account fill the form with valid email and
@@ -12,14 +13,11 @@ function Login() {
         <form className="loginForm">
           <div className="inputContainer">
             <input type="email" id="user" placeholder="Type your email"></input>
-            <label for="user">User</label>
-
             <input
               type="password"
               id="pwd"
               placeholder="Type your password"
             ></input>
-            <label for="pwd">Password</label>
             <Button>Sign In</Button>
           </div>
         </form>

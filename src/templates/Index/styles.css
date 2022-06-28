@@ -1,0 +1,61 @@
+.containerIndex{
+    padding: 10px;
+    min-height: 60%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.informationSliter{
+    width: 48%;
+    height: 300px;
+    min-height: 280px;
+    border: 1px solid red;
+}
+
+.lowerTable{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 280px;
+    border: 1px solid red;
+
+}
+.allContainer{
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    padding-top: 5px;
+}
+/*relacionado aa tablea*/
+table{
+    padding-top: 10px;
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
+    min-width: 500px;
+    border-collapse: collapse
+}
+thead{
+    background-color: rgba(20, 18, 18, 0.8);
+    color: #fff;
+}
+th{
+    padding:0 8px;
+
+}
+th,td{
+    height: 40px;
+}
+hr{
+    margin: 5px;
+
+}
+.tableId{
+    font-weight: 700;
+}
