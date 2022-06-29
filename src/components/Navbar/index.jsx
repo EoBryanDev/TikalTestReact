@@ -48,6 +48,7 @@ useEffect(()=>{
               Home
             </Link>
           </li>
+          {login_logout}
         </div>
       </ul>
     </nav>
