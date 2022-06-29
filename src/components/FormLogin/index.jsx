@@ -1,33 +1,38 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import {useNavigate} from "react-router-dom"
 
 
 import "./styles.css";
-import { loginRoute } from "../../utils/post-login-route";
 import { Button } from "../Button";
 import { Input } from "../FormLogin/Input";
 
+import { Context } from '../../contexts/loginContext'
+import { loginRoute } from "../../utils/post-login-route";
+
 export const FormLogin = () => {
+
+  const { authenticated, handleAuthenticated} = useContext(Context)
+
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
-  {/*tentar implementar mensagem de errro*/}
-  const [error, setError] = useState("")
 
-  
-
-
+  let navigate = useNavigate()
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     const data = {
       user: user,
       pwd: pwd,
     };   
-    loginRoute(data)
 
+    if (loginRoute(data)) {
+      handleAuthenticated(data.user)
+    }
     
-
   }
-
+  
+  if (authenticated) {
+    navigate('/index')
+  }
   return (
       <form className="loginForm" onSubmit={handleSubmit}>
       <div className="inputContainer">

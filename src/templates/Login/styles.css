@@ -1,13 +1,13 @@
 section {
   height: 100vh;
+}
+.containerLogin {
   background: rgb(255, 255, 255);
   background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 1) 0%,
       rgba(179, 179, 179, 0.8) 100%
   );
-}
-.containerLogin {
   min-height: 70%;
   min-width: 400px;
   display: flex;

@@ -1,5 +1,7 @@
 import "./styles.css";
 
+import {Link} from 'react-router-dom'
+
 import { Button } from "../../components/Button";
 
 function Home() {
@@ -14,8 +16,8 @@ function Home() {
             ></img>
           </div>
           <div className="buttonContainer">         
-            <Button>Login</Button>
-            <Button>See more...</Button>
+            <Link to={"/login"}><Button>Login</Button></Link>
+            <a href="https://www.tikal.tech/"><Button>See more...</Button></a>
           </div>
         </div>
       </div>

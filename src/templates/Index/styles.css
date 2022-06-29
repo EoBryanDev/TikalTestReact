@@ -1,7 +1,7 @@
 .containerIndex{
     padding: 10px;
-    min-height: 60%;
-    min-width: 400px;
+
+    min-width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -9,35 +9,51 @@
 }
 
 .informationSliter{
-    width: 48%;
-    height: 300px;
+    width: 80%;
+    height: 50vh;
     min-height: 280px;
-    border: 1px solid red;
+
 }
 
 .lowerTable{
+    margin-top: 5px;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 280px;
-    border: 1px solid red;
+    justify-items: center;
+    align-items: center;
+    align-self: center;
+    min-height: 50vh;
+
 
 }
 .allContainer{
-    border: 1px solid blue;
     display: flex;
     flex-direction: column;
+    border: 2px solid red;
+    
+}
+.modalContainer{
+    display: flex;
+
+}
+.allContainer {
+    background: rgb(255, 255, 255);
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(179, 179, 179, 0.8) 100%
+  );
 }
 footer{
-    padding-top: 5px;
+    flex-direction: column;
+    border: 1px solid red;
+
 }
 /*relacionado aa tablea*/
-table{
-    padding-top: 10px;
+table{ 
     margin: 0 auto;
     text-align: center;
-    width: 70%;
+    width: 100%;
     min-width: 500px;
     border-collapse: collapse
 }
@@ -50,6 +66,7 @@ th{
 
 }
 th,td{
+    padding: 5px 20px;
     height: 40px;
 }
 hr{
@@ -58,4 +75,28 @@ hr{
 }
 .tableId{
     font-weight: 700;
+}
+.btnIndex{
+    padding: 8px;
+    margin-left: 4px;
+    font-size: 14px;
+    background-color: aqua;
+    border-radius: 5px;
+    border: 1px solid #c5c5c5;
+}
+.btnIndex:hover{
+    transition: ease 0.5s;
+    background-color: rgba(54, 54, 54, 0.8);
+    color: #fff;
+}
+.btnIndexUp{
+    background-color: gold;
+}
+.btnIndexDel{
+    background-color: rgb(250, 17, 0);
+}
+h1{
+    font-size: 40px;
+    letter-spacing: 4px;
+    font-weight: 400;
 }

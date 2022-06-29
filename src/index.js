@@ -2,14 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LoginContextProvider } from "./contexts/loginContext";
+
 import axios from "axios";
 
+import "./styles/global-styles.css";
+
+import Navbar from "./components/Navbar";
 import Home from "./templates/Home";
 import Index from "./templates/Index";
 import Login from "./templates/Login";
-import Navbar from "./components/Navbar";
-
-import "./styles/global-styles.css";
 
 axios.defaults.baseURL = "https://testfrontpl.herokuapp.com/";
 
@@ -17,7 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <LoginContextProvider>
-      <Router>
+      <Router >
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
