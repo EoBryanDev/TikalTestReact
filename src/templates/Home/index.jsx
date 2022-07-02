@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import {Link} from 'react-router-dom'
+import { FaSignInAlt, FaExternalLinkAlt} from "react-icons/fa";
 
 import { Button } from "../../components/Button";
 
@@ -16,8 +17,8 @@ function Home() {
             ></img>
           </div>
           <div className="buttonContainer">         
-            <Link to={"/login"}><Button>Login</Button></Link>
-            <a href="https://www.tikal.tech/"><Button>See more...</Button></a>
+            <Link to={"/login"}><Button> <FaSignInAlt /> Login</Button></Link>
+            <a href="https://www.tikal.tech/"><Button><FaExternalLinkAlt /> See more...</Button></a>
           </div>
         </div>
       </div>

@@ -1,57 +1,66 @@
 import { Link } from "react-router-dom";
-import { useContext, useEffect } from 'react'
+import { IconContext } from "react-icons";
+import { FaHome, FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 import "./styles.css";
-import { Context } from "../../contexts/loginContext";
-import axios from "axios";
+
+import useLogin from "../../hooks/useLogin";
 
 function Navbar() {
-  const { authenticated, handleLogout } = useContext(Context)
+  const { authenticated, logout } = useLogin();
 
-    async function handleOnClick(){
-      const response = await axios.post('logout',{
-        headers:{
-          'x-access-token' : localStorage.getItem('token')
-        }
-      })
-      console.log(response)
-      handleLogout(false)
-      localStorage.removeItem('token')
+  async function handleOnClick() {
+    logout();
   }
 
-  const login_logout = authenticated ? <li>
-            <Link to="/logout" onClick={handleOnClick}>
-              Logout
-            </Link>
-          </li> : <li>
-            <Link to="/login">
-              Login
-            </Link>
-          </li>
-useEffect(()=>{
-
-},[authenticated])
   return (
-    <nav className="navContainer">
-      <ul>
-        <li>
-          <Link to="/">
-              <img
-                src="img/tikal_tech_logotype.webp"
-                alt="Tikal Logotype"
-              ></img>
-          </Link>
-        </li>
-        <div className="liContainer">
-          <li>
-            <Link to="/">
-              Home
-            </Link>
-          </li>
-          {login_logout}
-        </div>
-      </ul>
-    </nav>
+      <nav className="navContainer">
+      <IconContext.Provider value={{ style: {verticalAlign: 'middle', margin: '0 5px'}}}>
+        {!authenticated ? (
+          <ul>
+            <li>
+              <Link to="/">
+                <img
+                  src="img/tikal_tech_logotype.webp"
+                  alt="Tikal Logotype"
+                ></img>
+              </Link>
+            </li>
+            <div className="liContainer">
+              <li>
+                <Link to="/"> <FaHome /> Home</Link>
+              </li>
+              <li>
+                <Link to="/login"> <FaSignInAlt /> Login</Link>
+              </li>
+            </div>
+          </ul>
+        ) : (
+          <ul>
+            <li>
+              <Link to="/">
+                <img
+                  src="img/tikal_tech_logotype.webp"
+                  alt="Tikal Logotype"
+                ></img>
+              </Link>
+            </li>
+            <div className="liContainer">
+              <li>
+                <Link to="/logout" onClick={handleOnClick}>
+                  <FaSignOutAlt />
+                    Logout
+                </Link>
+              </li>
+              <li>
+                <Link to="/index"> <MdDashboard />Index</Link>
+              </li>
+            </div>
+          </ul>
+        )}
+        </IconContext.Provider>
+      </nav>
   );
 }
 

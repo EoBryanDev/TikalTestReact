@@ -1,6 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import { Context } from "../../contexts/loginContext";
+import { loginContext } from "../../contexts/loginContext";
 import { useNavigate } from "react-router-dom";
+
+import {FaSearch, FaEdit} from 'react-icons/fa'
+import {MdDelete} from 'react-icons/md'
 import Modal from "react-modal";
 
 import axios from "axios";
@@ -57,7 +60,7 @@ function Index() {
   function closeModal() {
     setIsOpen(false);
   }
-  const { authenticated, userAuthenticated } = useContext(Context);
+  const { authenticated, userAuthenticated } = useContext(loginContext);
 
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
@@ -148,9 +151,9 @@ function Index() {
                           onClick={() => openModal(user)}
                           className="btnIndex btnIndexUp"
                         >
-                          Updated
+                          <FaEdit />
                         </button>
-                        <button className="btnIndex btnIndexDel" onClick={() => openDeleteModal(user.id)}>Delete</button>
+                        <button className="btnIndex btnIndexDel" onClick={() => openDeleteModal(user.id)}><MdDelete /></button>
                       </td>
                     </tr>
                   );
@@ -246,7 +249,7 @@ function Index() {
             type={"text"}
             placeholder={"Set your research by id"}
           />
-          <button className="btnIndex">Search</button>
+          <button className="btnIndex"><FaSearch /></button>
         </form>
         <table>
           <thead>

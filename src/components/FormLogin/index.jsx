@@ -1,57 +1,46 @@
-import { useState, useContext } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
-
+import {FaRegWindowClose} from 'react-icons/fa'
+import {FiLogIn} from 'react-icons/fi'
 import "./styles.css";
 import { Button } from "../Button";
 import { Input } from "../FormLogin/Input";
 
-import { Context } from '../../contexts/loginContext'
-import { loginRoute } from "../../utils/post-login-route";
+
+import useLogin from "../../hooks/useLogin";
 
 export const FormLogin = () => {
 
-  const { authenticated, handleAuthenticated} = useContext(Context)
+  const {user, setUser, login, error} = useLogin()
+  
+  const navigate = useNavigate()
 
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
-
-  let navigate = useNavigate()
   async function handleSubmit(e) {
     e.preventDefault()
-    const data = {
-      user: user,
-      pwd: pwd,
-    };   
-
-    if (loginRoute(data)) {
-      handleAuthenticated(data.user)
-    }
-    
-  }
-  
-  if (authenticated) {
-    navigate('/index')
+    console.log('no submit')
+    login(user.user, user.pwd)
+    navigate("/index")
   }
   return (
       <form className="loginForm" onSubmit={handleSubmit}>
       <div className="inputContainer">
+        {error ? <div className="errorBox"><FaRegWindowClose style={{margin: '0 4px'}}/> {error}</div> : ''}
         <Input
           type="email"
           id="user"
-          value={user}
+          value={user.user}
           placeholder="Type your email"
-          onChange={(e) => setUser(e.target.value)}
+          onChange={(e) => setUser((prevState) => ({...prevState , user: e.target.value}))}
         />
         <Input
           type="password"
           id="pwd"
-          value={pwd}
+          value={user.pwd}
           placeholder="Type your password"
-          onChange={(e) => setPwd(e.target.value)}
+          onChange={(e) => setUser((prevState) => ({...prevState , pwd: e.target.value}))}
         />
 
-        <Button>Sign In</Button>
+        <Button><FiLogIn size={'15px'}  style={{margin: '0 4px'}}/> Sign In</Button>
       </div>
     </form>
   );

@@ -6,3 +6,17 @@
     width: 500px;
     
   }
+
+  .errorBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(235, 0, 0);
+    background-color: rgb(255, 142, 142) ;
+    height: 40px;
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+  }
