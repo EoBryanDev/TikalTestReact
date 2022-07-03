@@ -137,7 +137,7 @@ function Index() {
       </label>
       <div className="sidebar">
         <header>Research Result</header>
-        {singleSearch === [] ? 
+        {singleSearch === []? 
         <div className="sidebarContent">
           <h3>ID</h3>
           <hr></hr>
@@ -287,18 +287,18 @@ function Index() {
                   style={customStyles}
                   contentLabel="Example Modal"
                 >
-                  <h2>Updated Client</h2>
+                  <h2>Delete Client</h2>
 
                   <hr></hr>
-                  <div>Are you sure to delete the data: ? </div>
+                  <div>Are you sure to delete the data ? </div>
                   <div>
                     <button
-                      className="btnIndex btnIndexUp"
+                      className="btnIndex btnIndexDel"
                       onClick={deleteUser}
                     >
                       Delete!
                     </button>
-                    <button className="btnIndex" onClick={closeDeleteModal}>
+                    <button className="btnIndex btnIndexUp" onClick={closeDeleteModal}>
                       Back
                     </button>
                   </div>
