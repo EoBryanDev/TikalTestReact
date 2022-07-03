@@ -25,7 +25,7 @@ export const LoginContextProvider = ({ children }) => {
       localStorage.removeItem('token')
     }
  
-  },[])
+  },[authenticated])
 
   const login = async (user, pwd) => {
 
@@ -38,11 +38,9 @@ export const LoginContextProvider = ({ children }) => {
         localStorage.setItem("token", res.data.token);
   
         setAuthenticated(true)
-
-        console.log(res)
         
       } catch (error) {
-        setError(`${error.message}`)
+        setError("Invalid Password and/or Email. Try again!")
 
         setTimeout(() => {
 
@@ -73,7 +71,6 @@ export const LoginContextProvider = ({ children }) => {
           'x-access-token' : localStorage.getItem('token')
         }
       })
-      console.log(response)
   
       setUser((prevState) => ({...prevState, user: ''}))
       setUser((prevState) => ({...prevState, pwd: ''}))

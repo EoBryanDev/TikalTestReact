@@ -10,7 +10,6 @@ import useLogin from "../hooks/useLogin";
 
 const Private = ({ Item }) => {
   const { authenticated } = useLogin();
-  console.log(authenticated);
   return authenticated ? <Item /> : <Login />;
 };
 

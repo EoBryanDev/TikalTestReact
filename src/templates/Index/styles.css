@@ -29,7 +29,6 @@
 .allContainer{
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
     
 }
 .modalContainer{
@@ -46,11 +45,11 @@
 }
 footer{
     flex-direction: column;
-    border: 1px solid red;
 
 }
 /*relacionado aa tablea*/
 table{ 
+    border-radius: 5px;
     margin: 0 auto;
     text-align: center;
     width: 100%;
@@ -58,6 +57,7 @@ table{
     border-collapse: collapse
 }
 thead{
+    
     background-color: rgba(20, 18, 18, 0.8);
     color: #fff;
 }
@@ -71,6 +71,18 @@ th,td{
 }
 hr{
     margin: 5px;
+
+}
+
+tbody tr:hover{
+    background-color: bisque;
+    color: rgba(54, 54, 54);
+}
+
+.searchBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 
 }
 .tableId{
@@ -99,4 +111,66 @@ h1{
     font-size: 40px;
     letter-spacing: 4px;
     font-weight: 400;
+}
+
+.sidebar{
+    border-radius: 10px 0 20px 5px;
+    background-color: rgb(54, 54, 54);
+    position: fixed;
+    right: -400px;
+    width: 300px;
+    height: 100%;
+    transition: all .5s ease;
+}
+
+.sidebar header{
+    font-size: 22px;
+    background-color: rgb(24, 24, 24);
+    color: rgba(255, 255, 255);
+    line-height: 70px;
+    text-align: center;
+}
+
+.sidebarContent{
+    padding-top: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+.sidebarContent hr{
+    margin: 0 0 5px 20px;
+}
+.sidebarContent p{
+    margin-bottom: 10px;
+}
+
+
+#check{
+    display: none;
+}
+
+label p{
+    color: rgb(255, 255, 255);
+}
+label #cancel{
+    font-weight: 700;
+    position: absolute;
+    cursor: pointer;
+    background-color: rgba(54, 54, 54);
+    border-radius: 5px;
+    padding: 5px 3px;
+}
+label #cancel{
+    z-index: 1111;
+    right: -195px;
+    top: 70px;
+    font-size: 20px;
+    transition: all .5s ease;
+}
+
+#check:checked ~ .sidebar{
+    right: 0;
+}
+
+#check:checked ~ label #cancel{
+    right: 250px;
 }

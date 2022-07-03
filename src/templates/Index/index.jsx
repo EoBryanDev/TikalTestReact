@@ -1,9 +1,10 @@
-import { useEffect, useState, useContext } from "react";
-import { loginContext } from "../../contexts/loginContext";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {FaSearch, FaEdit} from 'react-icons/fa'
-import {MdDelete} from 'react-icons/md'
+import useLogin from "../../hooks/useLogin";
+
+import { FaSearch, FaEdit } from "react-icons/fa";
+import { MdDelete, MdOutlineClose } from "react-icons/md";
 import Modal from "react-modal";
 
 import axios from "axios";
@@ -24,6 +25,8 @@ const customStyles = {
 };
 
 function Index() {
+  const { authenticated, user } = useLogin();
+
   const [userToUpdate, setUserToUpdate] = useState({
     id: "",
     name: "",
@@ -32,9 +35,17 @@ function Index() {
     createdAt: "",
     updatedAt: "",
   });
+
   const [modalIsOpen, setIsOpen] = useState(false);
+
   const [modalDeleteIsOpen, setmodalDeleteIsOpen] = useState(false);
-  const [idToDelete, setIdToDelete] = useState('')
+
+  const [idToDelete, setIdToDelete] = useState("");
+
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const [singleSearch, setSingleSearch] = useState([]);
 
   function openModal(user) {
     setIsOpen(true);
@@ -50,22 +61,16 @@ function Index() {
     }));
   }
 
-  function openDeleteModal(id){
-    setmodalDeleteIsOpen(true)
-    setIdToDelete(id)
+  function openDeleteModal(id) {
+    setmodalDeleteIsOpen(true);
+    setIdToDelete(id);
   }
-  function closeDeleteModal(){
-    setmodalDeleteIsOpen(false)
+  function closeDeleteModal() {
+    setmodalDeleteIsOpen(false);
   }
   function closeModal() {
     setIsOpen(false);
   }
-  const { authenticated, userAuthenticated } = useContext(loginContext);
-
-  const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
-
-  const [singleSearch, setSingleSearch] = useState([]);
 
   let navigate = useNavigate();
 
@@ -79,17 +84,20 @@ function Index() {
       setData(response.data[0]);
     }
     getData();
-  }, [data, authenticated]);
+  }, [data]);
 
   async function submitSingleHandler(e) {
     e.preventDefault();
-    const response = await axios.get(`clientes/${search}`, {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    });
-    console.log(response);
-    setSingleSearch(response.data);
+    document.getElementById("check").checked = true;
+    try {
+      const response = await axios.get(`clientes/${search}`, {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      });
+      setSingleSearch(response.data);
+      setSearch('')
+    } catch (error) {}
   }
   async function updated(e) {
     e.preventDefault();
@@ -106,24 +114,72 @@ function Index() {
     console.log(response);
     setIsOpen(false);
   }
-  async function deleteUser(){
-    const response = await axios.delete(`clientes/${idToDelete}`,{
+  async function deleteUser() {
+    const response = await axios.delete(`clientes/${idToDelete}`, {
       headers: {
-        'x-access-token' : localStorage.getItem('token')
-      }
-    })
-    console.log(response)
+        "x-access-token": localStorage.getItem("token"),
+      },
+    });
+    console.log(response);
   }
+
   if (!authenticated) {
     navigate("/login");
   }
+
   return (
-    <section className="allContainer">
+    <main className="allContainer">
+      <input type="checkbox" id="check"></input>
+      <label htmlFor="check">
+        <p id="cancel">
+          <MdOutlineClose />
+        </p>
+      </label>
+      <div className="sidebar">
+        <header>Research Result</header>
+        <div className="sidebarContent">
+          <h3>ID</h3>
+          <hr></hr>
+          <p>{singleSearch.id}</p>
+          <h3>Name</h3>
+          <hr></hr>
+          <p>{singleSearch.name}</p>
+          <h3>Email</h3>
+          <hr></hr>
+          <p>{singleSearch.email}</p>
+          <h3>Mobile</h3>
+          <hr></hr>
+          <p>{singleSearch.mobile}</p>
+          <h3>Create At</h3>
+          <hr></hr>
+          <p>{singleSearch.createdAt}</p>
+          <h3>Updated At</h3>
+          <hr></hr>
+          <p>{singleSearch.updatedAt}</p>
+        </div>
+      </div>
       <section className="containerIndex">
-        <aside className="informationSliter">
-          <h1>Client List - {userAuthenticated}</h1>
+        <main className="informationSliter">
+          <h1>Client List - {user.user}</h1>
           <hr></hr>
           <div>
+            <div className="searchBar">
+              <form onSubmit={submitSingleHandler}>
+                <Input
+                  id={"singleSearch"}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  type={"text"}
+                  placeholder={"Set your research by id"}
+                />
+                <button className="btnIndex">
+                  <FaSearch />
+                </button>
+              </form>
+            <div>
+              <p>Foram encontrados: 03 de 03 clientes</p>
+            </div>
+            </div>
             <table>
               <thead>
                 <tr>
@@ -153,7 +209,12 @@ function Index() {
                         >
                           <FaEdit />
                         </button>
-                        <button className="btnIndex btnIndexDel" onClick={() => openDeleteModal(user.id)}><MdDelete /></button>
+                        <button
+                          className="btnIndex btnIndexDel"
+                          onClick={() => openDeleteModal(user.id)}
+                        >
+                          <MdDelete />
+                        </button>
                       </td>
                     </tr>
                   );
@@ -225,58 +286,55 @@ function Index() {
 
                   <hr></hr>
                   <div>Are you sure to delete the data: ? </div>
-                      <div>
-                      <button className="btnIndex btnIndexUp" onClick={deleteUser}>Delete!</button>
-                      <button className="btnIndex" onClick={closeDeleteModal}>
-                        Back
-                      </button>
-                      </div>
-
-                    
-                  
+                  <div>
+                    <button
+                      className="btnIndex btnIndexUp"
+                      onClick={deleteUser}
+                    >
+                      Delete!
+                    </button>
+                    <button className="btnIndex" onClick={closeDeleteModal}>
+                      Back
+                    </button>
+                  </div>
                 </Modal>
               </tbody>
             </table>
           </div>
-        </aside>
+        </main>
       </section>
-      <footer className="lowerTable">
-        <form onSubmit={submitSingleHandler}>
-          <Input
-            id={"singleSearch"}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            type={"text"}
-            placeholder={"Set your research by id"}
-          />
-          <button className="btnIndex"><FaSearch /></button>
-        </form>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Mobile</th>
-              <th>Created At</th>
-              <th>Updated At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              <tr key={singleSearch.id}>
-                <td>{singleSearch.id}</td>
-                <td>{singleSearch.name}</td>
-                <td>{singleSearch.email}</td>
-                <td>{singleSearch.mobile}</td>
-                <td>{singleSearch.createdAt}</td>
-                <td>{singleSearch.updatedAt}</td>
+
+      {search ? (
+        <footer className="lowerTable">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Created At</th>
+                <th>Updated At</th>
               </tr>
-            }
-          </tbody>
-        </table>
-      </footer>
-    </section>
+            </thead>
+            <tbody>
+              {
+                <tr key={singleSearch.id}>
+                  <td>{singleSearch.id}</td>
+                  <td>{singleSearch.name}</td>
+                  <td>{singleSearch.email}</td>
+                  <td>{singleSearch.mobile}</td>
+                  <td>{singleSearch.createdAt}</td>
+                  <td>{singleSearch.updatedAt}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </footer>
+      ) : (
+        ""
+      )}
+    </main>
   );
 }
 
