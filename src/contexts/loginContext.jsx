@@ -40,7 +40,7 @@ export const LoginContextProvider = ({ children }) => {
         setAuthenticated(true)
         
       } catch (error) {
-        setError("Invalid Password and/or Email. Try again!")
+        setError(`${error.message}`)
 
         setTimeout(() => {
 

@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# Tikal Tech Front-End Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Neste projeto utilizei o framework JS "ReactJS",React Router Dom, Axios e React Icons. Decidi ao construir o layout do projeto tomar a liberdade de recuperar alguns elementos da jurisTech como background do site oficial, logotipo e logomarca para deixar o projeto direcionado à companhia.
 
-## Available Scripts
+## Teste - Interface de Leitura
 
-In the project directory, you can run:
+* O começo do projeto foi em realizar a estrutura de componentes para que a navegação do cliente fosse o mais fluída possível e agradável. Para isso construi uma página home que seria a raíz, que seria acessada pelo usuário assim que acessasse a página raíz. Ela conta com um componente de navegação (uma barra de navegação) e uma interface com botões que direciona para a página de login e outro para a página oficial da companhia. Após isto foi realizado a pagina de login e depois a página de apresentação dos dados recuperado da API, ou seja, ela é privada.
 
-### `npm start`
+* Concomitantemente foi realizado as requisições com Axios para fazer a validação do login e salvar o token do JWT no Local Storage aonde poderia ser facilmente acessado de qualquer parte da aplicação, sendo para realizar novas requisições ou para fazer o logout. Após efetuado o login a barra de navegação é alterada de Home e Login para Logout e Index. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Na sequência foi realizado o tabelamento do retorno das informações da API. Desta maneira para fazer as operações de atualização e de remoção foi utilizado modais.
+  
+* Para finalizar, fiz a apresentação do detalhe dos dados por uma requisição pelo ID e apresentei o retorno dentro de um modal que aparece ao lado direito da tela.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* Ao realizar o Logout, o token é removido do Local Storage, a autenticação é alterada pra falsa no contexto da aplicação e o usuário é redirecionado para fora da página privada.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

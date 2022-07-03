@@ -126,7 +126,7 @@ function Index() {
   if (!authenticated) {
     navigate("/login");
   }
-
+  console.log(singleSearch)
   return (
     <main className="allContainer">
       <input type="checkbox" id="check"></input>
@@ -137,6 +137,7 @@ function Index() {
       </label>
       <div className="sidebar">
         <header>Research Result</header>
+        {singleSearch === [] ? 
         <div className="sidebarContent">
           <h3>ID</h3>
           <hr></hr>
@@ -156,7 +157,11 @@ function Index() {
           <h3>Updated At</h3>
           <hr></hr>
           <p>{singleSearch.updatedAt}</p>
-        </div>
+        </div> 
+        : 
+        <div className="singleSearchError">
+          There were not found any data with this ID
+        </div>}
       </div>
       <section className="containerIndex">
         <main className="informationSliter">
@@ -172,12 +177,12 @@ function Index() {
                   type={"text"}
                   placeholder={"Set your research by id"}
                 />
-                <button className="btnIndex">
+                <button className="btnSearch">
                   <FaSearch />
                 </button>
               </form>
             <div>
-              <p>Foram encontrados: 03 de 03 clientes</p>
+              <p className="descriptionResult">Foram encontrados {data.length ? data.length : 0} clientes</p>
             </div>
             </div>
             <table>

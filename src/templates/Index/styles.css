@@ -33,6 +33,7 @@
 }
 .modalContainer{
     display: flex;
+    flex-direction: column;
 
 }
 .allContainer {
@@ -75,10 +76,12 @@ hr{
 }
 
 tbody tr:hover{
-    background-color: bisque;
+    background-color: rgb(167, 167, 167);
     color: rgba(54, 54, 54);
 }
-
+.descriptionResult{
+    font-style: italic;
+}
 .searchBar{
     display: flex;
     flex-direction: row;
@@ -88,6 +91,9 @@ tbody tr:hover{
 .tableId{
     font-weight: 700;
 }
+.btnIndex, .btnSearch {
+    cursor: pointer;
+}
 .btnIndex{
     padding: 8px;
     margin-left: 4px;
@@ -96,7 +102,15 @@ tbody tr:hover{
     border-radius: 5px;
     border: 1px solid #c5c5c5;
 }
-.btnIndex:hover{
+.btnSearch{
+    padding: 8px;
+    margin-left: 4px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(5, 253, 25);   
+}
+.btnIndex:hover,.btnSearch:hover{
     transition: ease 0.5s;
     background-color: rgba(54, 54, 54, 0.8);
     color: #fff;
@@ -111,6 +125,16 @@ h1{
     font-size: 40px;
     letter-spacing: 4px;
     font-weight: 400;
+}
+.singleSearchError{
+    display: flex;
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 25px;
 }
 
 .sidebar{
@@ -157,7 +181,7 @@ label #cancel{
     cursor: pointer;
     background-color: rgba(54, 54, 54);
     border-radius: 5px;
-    padding: 5px 3px;
+    padding: 5px 8px;
 }
 label #cancel{
     z-index: 1111;
